@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:rolling_dice/homescreen.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FutureBuilder(
-        future: _initialization,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            print("Error");
-          }
-          if (snapshot.connectionState == ConnectionState.done) {
-            return HomeScreen();
-          }
-          return CircularProgressIndicator();
-        },
-      ),
+      home: HomeScreen(),
     );
   }
 }
